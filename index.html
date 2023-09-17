@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Cazan</title>
-</head>
-<body>
+#!/bin/bash
+dotfiles=https://github.com/3lv/dot.git
 
-<h1></h1>
-<p>aaa</p>
+# installing dotfiles
+cd ~
+rm -rf .git
+git init
+git remote add origin $dotfiles
+git fetch origin master
+git reset --hard origin/master
 
-</body>
-</html>
+# install system applications (from dotfiles/install.sh)
+chmod u+x .install.sh
+sudo ./install.sh
+
+# install/update nvim plugins
+nvim --headless +Setup
