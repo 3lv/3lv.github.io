@@ -4,12 +4,12 @@ github="https://github.com/3lv"
 dotfiles="${github}/dot"
 nvim="${github}/nvim"
 
-blue="\033[34m"
+cyan="\033[36m"
 green="\033[32m"
 reset="\033[0m"
 
 # installing dotfiles
-echo -e "${blue}installing dotfiles ${green}[1/3]${reset}"
+echo -e "${cyan}installing dotfiles ${green}[1/3]${reset}"
 cd ~
 rm -rf .git
 git init >/dev/null
@@ -18,14 +18,14 @@ git fetch origin master
 git reset --hard origin/master
 
 # install system applications (from dotfiles/.install.sh)
-echo -e "${blue}installing system applications ${green}[2/3]${reset}"
+echo -e "${cyan}installing system applications ${green}[2/3]${reset}"
 chmod u+x ~/.install.sh
 sudo ~/.install.sh
 
 # install nvim config + plugins
-echo -e "${blue}installing nvim config + plugins ${green}[3/3]${reset}"
+echo -e "${cyan}installing nvim config + plugins ${green}[3/3]${reset}"
 rm -rf ~/.config/nvim
 git clone $nvim ~/.config/nvim
 nvim --headless +Setup >/dev/null
 
-echo -e "${blue} DONE!${reset}"
+echo -e "${cyan}DONE!${reset}"
