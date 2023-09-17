@@ -4,6 +4,8 @@ github="https://github.com/3lv"
 dotfiles="${github}/dot"
 nvim="${github}/nvim"
 
+HOME="/home/vlad"
+
 # installing dotfiles
 cd ~
 rm -rf .git
@@ -19,6 +21,6 @@ sudo ~/.install.sh
 # install nvim config + plugins
 rm -rf ~/.config/nvim
 git clone $nvim ~/.config/nvim
-nvim --headless +Setup
+nvim --headless +Setup >/dev/null
 
 echo
