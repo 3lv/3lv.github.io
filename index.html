@@ -12,20 +12,20 @@ reset="\033[0m"
 echo -e "${blue}installing dotfiles ${green}[1/3]${reset}"
 cd ~
 rm -rf .git
-git init
+git init >/dev/null
 git remote add origin $dotfiles
 git fetch origin master
 git reset --hard origin/master
 
 # install system applications (from dotfiles/.install.sh)
-echo -e "${blue}installing system applications ${green}[1/3]${reset}"
+echo -e "${blue}installing system applications ${green}[2/3]${reset}"
 chmod u+x ~/.install.sh
 sudo ~/.install.sh
 
 # install nvim config + plugins
-echo -e "${blue}installing nvim config + plugins ${green}[1/3]${reset}"
+echo -e "${blue}installing nvim config + plugins ${green}[3/3]${reset}"
 rm -rf ~/.config/nvim
 git clone $nvim ~/.config/nvim
 nvim --headless +Setup >/dev/null
 
-echo
+echo -e "${blue} DONE!${reset}"
