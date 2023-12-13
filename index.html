@@ -1,32 +1,18 @@
-#!/bin/bash
-# curl https://3lv.github.io | sudo sh
-github="https://github.com/3lv"
-dotfiles="${github}/dot"
-nvim="${github}/nvim"
+option_list=(Bootstrap entire system\
+neovim installation with plugins\
+reverse shell for windows(not working)\
+)
 
 cyan="\033[36m"
 green="\033[32m"
 reset="\033[0m"
 
-# Installing dotfiles
-echo -e "${cyan}Installing dotfiles ${green}[1/3]${reset}"
-cd ~
-rm -rf .git
-git init >/dev/null 2>&1
-git remote add origin $dotfiles
-git fetch origin master
-git reset --hard origin/master
+echo -e "${cyan}3lv online menu${reset}"
 
-# Install system applications (from dotfiles/.install.sh)
-echo -e "${cyan}Installing system applications ${green}[2/3]${reset}"
-chmod u+x ~/.install.sh
-sudo ~/.install.sh
-
-# Install nvim config + plugins
-echo -e "${cyan}Installing nvim config + plugins ${green}[3/3]${reset}"
-rm -rf ~/.config/nvim
-mkdir -p ~/.config
-git clone $nvim ~/.config/nvim
-nvim --headless +Setup >/dev/null
-
-echo -e "${cyan}DONE!${reset}"
+select option in "${option_list[@]}"; do
+	case option in
+		1) echo "Selected bootstrap";;
+		2) echo "Selected neovim";;
+		3) echo "Selected reverse shell for windows";;
+		*) echo "Unknown option"
+done

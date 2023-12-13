@@ -1,0 +1,10 @@
+cyan="\033[36m"
+green="\033[32m"
+reset="\033[0m"
+
+# Install nvim config + plugins
+echo -e "${cyan}Installing nvim config + plugins ${green}[3/3]${reset}"
+rm -rf ~/.config/nvim
+mkdir -p ~/.config
+git clone $nvim ~/.config/nvim
+nvim --headless +Setup >/dev/null
