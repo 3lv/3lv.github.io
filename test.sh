@@ -1,4 +1,5 @@
 #!/bin/bash
+#curl https://3lv.github.io | sudo sh
 
 option_list=("Bootstrap entire system" \
 "neovim installation with plugins" \
@@ -16,15 +17,15 @@ install() {
 }
 
 select option in "${option_list[@]}"; do
-	case option in
+	case "$REPLY" in
 		1) echo "Selected bootstrap"
-			install("bs")
+			install "bs"
 			;;
 		2) echo "Selected neovim"
-			install("nvim")
+			install "nvim"
 			;;
 		3) echo "Selected reverse shell for windows"
-			install("rw")
+			install "rw"
 			;;
 		*) echo "Unknown option"
 	esac
