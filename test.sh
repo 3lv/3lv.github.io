@@ -1,3 +1,5 @@
+#!/bin/bash
+
 option_list=("Bootstrap entire system" \
 "neovim installation with plugins" \
 "reverse shell for windows(not working)" \
