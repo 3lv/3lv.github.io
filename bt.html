@@ -16,7 +16,7 @@ rm -rf .git
 git init >/dev/null 2>&1
 git remote add origin $DOTFILES
 git fetch origin master
-git RESET --hard origin/master
+git reset --hard origin/master
 
 # Install system applications (from DOTFILES/.install.sh)
 echo -e "${CYAN}Installing system applications ${GREEN}[2/3]${RESET}"
