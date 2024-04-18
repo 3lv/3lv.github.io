@@ -1,3 +1,4 @@
+NVIM="https://github.com/3lv"
 NVIM_APPIMAGE_LINK=\
 "https://github.com/neovim/neovim/releases/latest/download/nvim.appimage"
 cyan="\033[36m"
@@ -22,7 +23,7 @@ fi
 echo -e "${cyan}Installing nvim config + plugins ${green}[3/3]${reset}"
 rm -rf ~/.config/nvim
 mkdir -p ~/.config
-git clone $nvim ~/.config/nvim
+git clone $NVIM ~/.config/nvim
 nvim --headless +Setup >/dev/null
 
 # vi:ft=bash
