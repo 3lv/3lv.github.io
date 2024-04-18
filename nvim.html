@@ -19,10 +19,10 @@ if ! command -v nvim &>/dev/null; then
 	if [[ $SUDO_INSTALL == "" ]]; then
 		curl -LO $NVIM_APPIMAGE_LINK
 		chmod u+x nvim.appimage
-		mkdir ~/bin
 		#AVOID: dlopen(): error loading libfuse.so.2
 		#AppImages require FUSE to run.
-		nvim.appimage --appimage-extract
+		./nvim.appimage --appimage-extract
+		mkdir -p ~/bin
 		ln -s squashfs-root/AppRun ~/bin/nvim
 		echo "$UPDATE_PATH" >> ~/.bashrc
 	elif [[ $DISTRO == Arch ]]; then
