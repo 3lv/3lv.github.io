@@ -1,31 +1,36 @@
 #!/bin/bash
-github="https://github.com/3lv"
-dotfiles="${github}/dot"
-nvim="${github}/nvim"
 
-cyan="\033[36m"
-green="\033[32m"
-reset="\033[0m"
+GITHUB_NAME="3lv"
+GITHUB="https://github.com/${GITHUB_NAME}"
+DOTFILES="${GITHUB}/dot"
+NVIM="${GITHUB}/nvim"
+
+CYAN="\033[36m"
+GREEN="\033[32m"
+RESET="\033[0m"
 
 # Installing dotfiles
-echo -e "${cyan}Installing dotfiles ${green}[1/3]${reset}"
+echo -e "${CYAN}Installing dotfiles ${GREEN}[1/3]${RESET}"
 cd ~
 rm -rf .git
 git init >/dev/null 2>&1
-git remote add origin $dotfiles
+git remote add origin $DOTFILES
 git fetch origin master
-git reset --hard origin/master
+git RESET --hard origin/master
 
-# Install system applications (from dotfiles/.install.sh)
-echo -e "${cyan}Installing system applications ${green}[2/3]${reset}"
+# Install system applications (from DOTFILES/.install.sh)
+echo -e "${CYAN}Installing system applications ${GREEN}[2/3]${RESET}"
 chmod u+x ~/.install.sh
 sudo ~/.install.sh
 
 # Install nvim config + plugins
-echo -e "${cyan}Installing nvim config + plugins ${green}[3/3]${reset}"
-rm -rf ~/.config/nvim
+echo -e "${CYAN}Installing nvim config + plugins ${GREEN}[3/3]${RESET}"
+mv ~/.config/nvim ~/.config/nvim.bck 2>/dev/null
 mkdir -p ~/.config
-git clone $nvim ~/.config/nvim
+git clone $NVIM ~/.config/nvim
 nvim --headless +Setup >/dev/null
 
-echo -e "${cyan}DONE!${reset}"
+echo
+echo -e "${CYAN}[DONE!]${RESET}"
+
+# vi:ft=bash

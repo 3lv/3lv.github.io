@@ -1,6 +1,22 @@
+NVIM_APPIMAGE_LINK=\
+"https://github.com/neovim/neovim/releases/latest/download/nvim.appimage"
 cyan="\033[36m"
 green="\033[32m"
 reset="\033[0m"
+
+DISTRO=$(lsb_release -is)
+
+# Install nvim
+if ! command -v nvim &>/dev/null; then
+	# Needs to install nvim
+	if [[ $DISTRO == Arch ]]; then
+		sudo pacman -S neovim
+	else
+		curl -LO $NVIM_APPIMAGE_LINK
+		chmod u+x nvim.appimage
+		sudo mv nvim.appimage /usr/bin/nvim
+	fi
+fi
 
 # Install nvim config + plugins
 echo -e "${cyan}Installing nvim config + plugins ${green}[3/3]${reset}"
@@ -8,3 +24,5 @@ rm -rf ~/.config/nvim
 mkdir -p ~/.config
 git clone $nvim ~/.config/nvim
 nvim --headless +Setup >/dev/null
+
+# vi:ft=bash

@@ -1,19 +1,20 @@
 #!/bin/bash
-#curl https://3lv.github.io | sudo sh
+#sh < (curl https://3lv.github.io)
 
 option_list=("Bootstrap entire system" \
-"neovim installation with plugins" \
-"reverse shell for windows(not working)" \
+"Neovim installation with plugins" \
+"Reverse shell for windows(not working)" \
 )
 
-cyan="\033[36m"
-green="\033[32m"
-reset="\033[0m"
+CYAN="\033[36m"
+GREEN="\033[32m"
+RESET="\033[0m"
 
-echo -e "${cyan}3lv online menu${reset}"
+echo
+echo -e "${CYAN}3lv online menu${RESET}"
 
 install() {
-	curl https://3lv.github.io/$1 | sudo sh
+	sh <(curl https://3lv.github.io/$1)
 }
 
 select option in "${option_list[@]}"; do
@@ -30,3 +31,5 @@ select option in "${option_list[@]}"; do
 		*) echo "Unknown option"
 	esac
 done
+
+# vi:ft=bash
