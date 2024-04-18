@@ -17,13 +17,14 @@ if ! command -v nvim &>/dev/null; then
 		SUDO_INSTALL="yes"
 	fi
 	if [[ $SUDO_INSTALL == "" ]]; then
+		cd
 		curl -LO $NVIM_APPIMAGE_LINK
 		chmod u+x nvim.appimage
 		#AVOID: dlopen(): error loading libfuse.so.2
 		#AppImages require FUSE to run.
 		./nvim.appimage --appimage-extract
 		mkdir -p ~/bin
-		ln -s squashfs-root/AppRun ~/bin/nvim
+		ln -s ~/squashfs-root/AppRun ~/bin/nvim
 		echo "$UPDATE_PATH" >> ~/.bashrc
 	elif [[ $DISTRO == Arch ]]; then
 		sudo pacman -S neovim
