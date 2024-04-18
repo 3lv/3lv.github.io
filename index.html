@@ -1,5 +1,5 @@
 #!/bin/bash
-#sh < (curl https://3lv.github.io)
+#bash < (curl https://3lv.github.io)
 
 option_list=("Bootstrap entire system" \
 "Neovim installation with plugins" \
@@ -14,7 +14,7 @@ echo
 echo -e "${CYAN}3lv online menu${RESET}"
 
 install() {
-	sh <(curl https://3lv.github.io/$1)
+	bash <(curl https://3lv.github.io/$1)
 }
 
 select option in "${option_list[@]}"; do

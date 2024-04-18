@@ -1,16 +1,28 @@
-NVIM="https://github.com/3lv"
+NVIM_CONFIG="https://github.com/3lv/nvim"
 NVIM_APPIMAGE_LINK=\
 "https://github.com/neovim/neovim/releases/latest/download/nvim.appimage"
+UPDATE_PATH='export PATH=$PATH:~/bin'
 cyan="\033[36m"
 green="\033[32m"
 reset="\033[0m"
+SUDO_INSTALL=""
 
 DISTRO=$(lsb_release -is)
 
 # Install nvim
 if ! command -v nvim &>/dev/null; then
 	# Needs to install nvim
-	if [[ $DISTRO == Arch ]]; then
+	read -r -p "Do a systemwide installation?(requires sudo) [y/N] "
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		SUDO_INSTALL="yes"
+	fi
+	if [[ $SUDO_INSTALL == "" ]]; then
+		curl -LO $NVIM_APPIMAGE_LINK
+		chmod u+x nvim.appimage
+		mkdir ~/bin
+		echo "$UPDATE_PATH" >> ~/.bashrc
+		mv nvim.appimage /usr/bin/nvim
+	elif [[ $DISTRO == Arch ]]; then
 		sudo pacman -S neovim
 	else
 		curl -LO $NVIM_APPIMAGE_LINK
@@ -23,7 +35,7 @@ fi
 echo -e "${cyan}Installing nvim config + plugins ${green}[3/3]${reset}"
 rm -rf ~/.config/nvim
 mkdir -p ~/.config
-git clone $NVIM ~/.config/nvim
+git clone $NVIM_CONFIG ~/.config/nvim
 nvim --headless +Setup >/dev/null
 
 # vi:ft=bash
