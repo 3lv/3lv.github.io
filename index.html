@@ -21,7 +21,7 @@ echo -e "${CYAN}3lv online menu${RESET}"
 
 install() {
 	#bash <(curl https://3lv.github.io/$1)
-	script="$TEMP_BT/$1"
+	script="$TEMP_BT/$1.html"
 	chmod u+x "$script"
 	./"$script"
 }
