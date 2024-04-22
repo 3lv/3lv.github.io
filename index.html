@@ -1,6 +1,10 @@
 #!/bin/bash
 #bash < (curl https://3lv.github.io)
 
+TEMP_BT="temp_bootstrap"
+
+git clone https://gihtub.com/3lv/3lv.github.io "$TEMP_BT"
+
 option_list=("Bootstrap entire system" \
 "Neovim installation with plugins" \
 "Reverse shell for windows(not working)" \
@@ -14,7 +18,10 @@ echo
 echo -e "${CYAN}3lv online menu${RESET}"
 
 install() {
-	bash <(curl https://3lv.github.io/$1)
+	#bash <(curl https://3lv.github.io/$1)
+	script="$TEMP_BT/$1"
+	chmod u+x "$script"
+	./"$script"
 }
 
 select option in "${option_list[@]}"; do
