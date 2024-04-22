@@ -2,8 +2,10 @@
 #bash < (curl https://3lv.github.io)
 
 TEMP_BT="temp_bootstrap"
+GITHUB_NAME="3lv"
+GITHUB="https://github.com/${GITHUB_NAME}"
 
-git clone https://gihtub.com/3lv/3lv.github.io "$TEMP_BT"
+git clone "${GITHUB}/3lv.github.io" "$TEMP_BT"
 
 option_list=("Bootstrap entire system" \
 "Neovim installation with plugins" \
